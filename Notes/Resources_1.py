@@ -138,10 +138,32 @@ Threshold (Phân loại điểm sáng)
 ======================================================================
 '''
 
-# img_path = os.path.join("computer-vision-resources","Datasets", "Images", "earth.jpg")
-# img = cv2.imread(img_path)
+img_path = os.path.join("Datasets", "Images", "earth.jpg")
+img = cv2.imread(img_path)
 
+img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
+ret, thresh = cv2.threshold(img_gray, 50, 255, cv2.THRESH_BINARY) # phương pháp 1
+    # 50 là giá trị ngưỡng 
+    # các giá trị trên 50 giá trị chuyển đổi thành 255
+    # phân ngưỡng nhị phân.
+# thresh = cv2.blur(thresh,(20,20)) # kết hợp với nhiều phương pháp để cải thiện kể quả
+adaptivethresh = cv2.adaptiveThreshold(img_gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,21,30)
+    # img_gray: ảnh đầu vào (ảnh mức xám).
+    # 255: giá trị tối đa sau khi phân ngưỡng (thường là 255 cho ảnh trắng).
+    # cv2.ADAPTIVE_THRESH_GAUSSIAN_C: cách tính ngưỡng. Ở đây dùng Gaussian-weighted sum của vùng lân cận rồi trừ đi hằng số C.
+    # cv2.THRESH_BINARY: kiểu phân ngưỡng nhị phân (pixel > ngưỡng → 255, ngược lại → 0).
+    # 21: kích thước khối (block size). Mỗi vùng 21×21 pixel sẽ được tính ngưỡng riêng.
+    # 30: hằng số C. Giá trị ngưỡng tính được sẽ bị trừ đi 30 để điều chỉnh.
 
-# cv2.imshow('img_median_blur', img_median_blur)
-# cv2.waitKey(0) 
+cv2.imshow('img_gray', img_gray)
+cv2.imshow('thresh', thresh)
+cv2.imshow('adaptivethresh', adaptivethresh)
+
+cv2.waitKey(0) 
+
+'''
+======================================================================
+Edge detection (Đường viền)
+======================================================================
+'''
