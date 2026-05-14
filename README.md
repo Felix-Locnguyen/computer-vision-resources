@@ -21,4 +21,4 @@ Xây dựng nền tảng vững chắc về Computer Vision
 Theo dõi quá trình học tập và phát triển kỹ năng
 
 Định hướng
-Repository sẽ được cập nhật liên tục khi mình học thêm kiến thức mới và thực hiện các thử nghiệm.
+Repository sẽ được cập nhật liên tục khi mình học thêm kiến thức mới và thực hiện các thử nghiệm
